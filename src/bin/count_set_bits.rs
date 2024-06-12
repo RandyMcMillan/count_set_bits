@@ -24,14 +24,7 @@ fn version() {
 
     let version = env!("CARGO_PKG_VERSION");
     let crate_name = env!("CARGO_CRATE_NAME");
-    //let name = env!("CARGO_PKG_NAME");
-    //let author = env!("CARGO_PKG_AUTHORS");
-
-    //println!("Program Name: {}", name);
-    //println!("Program Version: {}", version);
     println!("{} v{}", crate_name.replace("_", "-"), version);
-    //println!("Program Version: {}", version);
-    //println!("Program Author: {}", author);
 
     process::exit(0);
 }
@@ -45,7 +38,11 @@ fn main() -> Result<(), Box<dyn Error>> {
         let arg_str = &args[1];
         let num: u128 = arg_str.parse::<u128>()?;
         let set_bits = count_set_bits(num.try_into().unwrap());
-        println!(" {}", set_bits);
+        if cfg!(debug_assertions) {
+            println!(" {}", set_bits);
+        } else {
+            println!("{}", set_bits);
+        }
     }
     Ok(())
 }
