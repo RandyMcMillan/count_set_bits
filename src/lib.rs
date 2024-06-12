@@ -26,8 +26,13 @@ pub fn count_set_bits(x: u128) -> u128 {
 mod tests {
     use super::*;
     #[test]
-    fn cs_bits() {
-        let result = count_set_bits(13);
-        assert_eq!(result, 3);
+    fn cs_bits_64() {
+        let result: u128 = count_set_bits(111111111111111111111111111111111111111);
+        assert_eq!(result, 64);
+    }
+    #[test]
+    fn cs_bits_128() {
+        let result: u128 = count_set_bits(340282366920938463463374607431768211455);
+        assert_eq!(result, 128);
     }
 }

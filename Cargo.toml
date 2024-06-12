@@ -1,13 +1,13 @@
 [package]
 name = "count_set_bits"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 license = "Apache-2.0"
 readme = "README.md"
 homepage = "https://github.com/randymcmillan/count_set_bits"
 repository = "https://github.com/randymcmillan/count_set_bits"
 documentation = "https://github.com/randymcmillan/count_set_bits"
-keywords = ["bit","bits"]
+keywords = ["bit", "bits"]
 description = "count set bits"
 authors = ["randymcmillan <randy.lee.mcmillan@gmail.com>"]
 
