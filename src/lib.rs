@@ -1,4 +1,4 @@
-pub fn count_set_bits(x: u32) -> u32 {
+pub fn count_set_bits(x: u128) -> u128 {
     let mut count = 0;
     let mut temp = x;
 
