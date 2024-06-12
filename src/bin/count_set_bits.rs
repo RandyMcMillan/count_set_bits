@@ -3,7 +3,7 @@ fn main() {
     let x = 13; // Example usage, change x as needed
     let set_bits = count_set_bits(x);
 
-    println!("Number of set bits in {}: {}", x, set_bits);
+    println!(" {}", set_bits);
 }
 #[cfg(test)]
 mod tests {
