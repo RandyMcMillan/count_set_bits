@@ -1,0 +1,10 @@
+[package]
+name = "count_set_bits"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+
+[lib]
+name = "count_set_bits"
+path = "src/lib.rs"
