@@ -43,7 +43,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     if args.len() > 1 {
         let arg_str = &args[1];
-        let num: u32 = arg_str.parse::<u32>()?;
+        let num: u128 = arg_str.parse::<u128>()?;
         let set_bits = count_set_bits(num.try_into().unwrap());
         println!(" {}", set_bits);
     }
