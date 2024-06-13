@@ -47,35 +47,65 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     match args.len() {
         // no arguments passed
+        // drop into stdin
         1 => {
             let mut arg_str = String::new();
             let stdin = std::io::stdin();
             stdin.read_line(&mut arg_str).unwrap();
             arg_str = arg_str.trim().to_string();
 
-            let num = arg_str.parse::<u128>().unwrap();
-            let set_bits = count_set_bits(num.try_into().unwrap());
-            if cfg!(debug_assertions) {
-                println!(" {}", set_bits);
-            } else {
-                println!("{}", set_bits);
-            }
+
+                match &arg_str[..] {
+                    "version" => version(),
+                    "-V" => version(),
+                    "-v" => version(),
+                    "--version" => version(),
+                    "help" => help(),
+                    "-h" => help(),
+                    "--help" => help(),
+                    _ => {
+                        let num: u128 = arg_str.parse::<u128>()?;
+                        let set_bits = count_set_bits(num.try_into().unwrap());
+                        if cfg!(debug_assertions) {
+                            println!(" {}", set_bits);
+                        } else {
+                            println!("{}", set_bits);
+                        }
+
+
+
+
+
+        }
+        }
         }
         // one argument passed
         2 => {
             //match args[1].parse() {
             if args.len() == 2 {
                 let arg_str = &args[1];
-                let num: u128 = arg_str.parse::<u128>()?;
-                let set_bits = count_set_bits(num.try_into().unwrap());
-                if cfg!(debug_assertions) {
-                    println!(" {}", set_bits);
-                } else {
-                    println!("{}", set_bits);
-                }
+                //handle arg as command
+                match &arg_str[..] {
+                    "version" => version(),
+                    "-V" => version(),
+                    "-v" => version(),
+                    "--version" => version(),
+                    "help" => help(),
+                    "-h" => help(),
+                    "--help" => help(),
+                    _ => {
+                        let num: u128 = arg_str.parse::<u128>()?;
+                        let set_bits = count_set_bits(num.try_into().unwrap());
+                        if cfg!(debug_assertions) {
+                            println!(" {}", set_bits);
+                        } else {
+                            println!("{}", set_bits);
+                        }
 
-                //Ok(42) => println!("This is the answer!"),
-                //_ => println!("This is not the answer."),
+                        //eprintln!("error: invalid command");
+                        //help();
+                    }
+                }
             }
         }
         // one command and one argument passed
