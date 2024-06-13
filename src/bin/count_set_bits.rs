@@ -64,7 +64,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                     _ => {
                         //let num: u128 = arg_str.parse::<u128>()?;
                         let num: u128 = arg1.parse::<u128>()?;
-                        let set_bits = count_set_bits(num.try_into().unwrap());
+                        let set_bits = count_set_bits(num.try_into().unwrap(), true);
                         //if cfg!(debug_assertions) {
                         //println!(" {}", set_bits);
                         //} else {
@@ -90,7 +90,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                     "--help" => help(),
                     _ => {
                         let num: u128 = arg_str.parse::<u128>()?;
-                        let set_bits = count_set_bits(num.try_into().unwrap());
+                        let set_bits = count_set_bits(num.try_into().unwrap(), true);
                         if cfg!(debug_assertions) {
                             println!(" {}", set_bits);
                         } else {
@@ -141,7 +141,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             if args.len() > 1 {
                 let arg_str = &args[1];
                 let num: u128 = arg_str.parse::<u128>()?;
-                let set_bits = count_set_bits(num.try_into().unwrap());
+                let set_bits = count_set_bits(num.try_into().unwrap(), true);
                 if cfg!(debug_assertions) {
                     println!(" {}", set_bits);
                 } else {
@@ -156,7 +156,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 arg_str = arg_str.trim().to_string();
 
                 let num = arg_str.parse::<u128>().unwrap();
-                let set_bits = count_set_bits(num.try_into().unwrap());
+                let set_bits = count_set_bits(num.try_into().unwrap(), true);
                 if cfg!(debug_assertions) {
                     println!(" {}", set_bits);
                 } else {
@@ -173,12 +173,12 @@ mod tests {
     use super::*;
     #[test]
     fn cs_bits_64() {
-        let result: u128 = count_set_bits(111111111111111111111111111111111111111);
+        let result: u128 = count_set_bits(111111111111111111111111111111111111111, true);
         assert_eq!(result, 64);
     }
     #[test]
     fn cs_bits_128() {
-        let result: u128 = count_set_bits(340282366920938463463374607431768211455);
+        let result: u128 = count_set_bits(340282366920938463463374607431768211455, true);
         assert_eq!(result, 128);
     }
 }
