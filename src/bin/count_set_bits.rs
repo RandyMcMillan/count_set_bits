@@ -56,10 +56,11 @@ fn main() -> Result<(), Box<dyn Error>> {
                 print!("{} ", arg1);
                 print!("{} ", arg2);
                 print!("{:?} ", arg3);
-            };
-            std::process::exit(0);
+            //};
+            //std::process::exit(0);
 
-            match &arg_str[..] {
+            //match &arg_str[..] {
+            match &arg1[..] {
                 "version" => version(),
                 "-V" => version(),
                 "-v" => version(),
@@ -70,7 +71,8 @@ fn main() -> Result<(), Box<dyn Error>> {
                 //"increase" => increase(number),
                 //"decrease" => decrease(number),
                 _ => {
-                    let num: u128 = arg_str.parse::<u128>()?;
+                    //let num: u128 = arg_str.parse::<u128>()?;
+                    let num: u128 = arg1.parse::<u128>()?;
                     let set_bits = count_set_bits(num.try_into().unwrap());
                     if cfg!(debug_assertions) {
                         println!(" {}", set_bits);
@@ -79,6 +81,8 @@ fn main() -> Result<(), Box<dyn Error>> {
                     }
                 }
             }
+            };
+
         }
         // one argument passed
         2 => {
