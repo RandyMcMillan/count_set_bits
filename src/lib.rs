@@ -9,7 +9,7 @@
 ///
 ///     // Iterate through each bit position (power of 2)
 ///     while temp > 0 {
-///         if cfg!(debug_assertions) {
+///         if print {
 ///             print!("{}", temp & 1);
 ///         }
 ///         count += temp & 1;
