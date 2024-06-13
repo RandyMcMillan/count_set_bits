@@ -46,6 +46,19 @@ fn main() -> Result<(), Box<dyn Error>> {
             arg_str = arg_str.trim().to_string();
             print!("arg_str={}\n", arg_str);
 
+            //let s = "Gerald,70,a,b,c";
+            let s = arg_str.clone();
+            print!("s={}\n", s);
+
+            if let [arg1, arg2, arg3 @ ..] =
+                &s.split(" ").map(String::from).collect::<Vec<String>>()[..]
+            {
+                print!("{} ", arg1);
+                print!("{} ", arg2);
+                print!("{:?} ", arg3);
+            };
+            std::process::exit(0);
+
             match &arg_str[..] {
                 "version" => version(),
                 "-V" => version(),
@@ -66,24 +79,6 @@ fn main() -> Result<(), Box<dyn Error>> {
                     }
                 }
             }
-
-            let s = "Gerald,70,a,b,c";
-
-            if let [name, age_str, other @ ..] =
-                &s.split(",").map(String::from).collect::<Vec<String>>()[..]
-            {
-                // If there is no comma, this if statement won't run.
-
-                println!("{}", name);
-                println!("{}", age_str);
-                println!("{:?}", other);
-                /*
-                    Output:
-                    Gerald
-                    70
-                    ["a", "b", "c"]
-                */
-            };
         }
         // one argument passed
         2 => {
