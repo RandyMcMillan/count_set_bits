@@ -39,9 +39,9 @@ pub fn count_set_bits(x: u128) -> u128 {
 
     // Iterate through each bit position (power of 2)
     while temp > 0 {
-        if cfg!(debug_assertions) {
-            print!("{}", temp & 1);
-        }
+        //if cfg!(debug_assertions) {
+        print!("{}", temp & 1);
+        //}
         count += temp & 1;
         temp >>= 1;
     }

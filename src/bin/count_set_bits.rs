@@ -45,12 +45,11 @@ fn main() -> Result<(), Box<dyn Error>> {
             stdin.read_line(&mut arg_str).unwrap();
             arg_str = arg_str.trim().to_string();
             let s = arg_str.clone();
-            if let [arg1, _arg2 @ ..] =
-                &s.split(" ").map(String::from).collect::<Vec<String>>()[..]
+            if let [arg1, _arg2 @ ..] = &s.split(" ").map(String::from).collect::<Vec<String>>()[..]
             {
                 if cfg!(debug_assertions) {
-                print!("&arg1={}\n",&arg1);
-                print!("&_arg2={:?}\n",&_arg2);
+                    //print!("&arg1={}\n",&arg1);
+                    //print!("&_arg2={:?}\n",&_arg2);
                 }
                 match &arg1[..] {
                     "version" => version(),
@@ -66,11 +65,11 @@ fn main() -> Result<(), Box<dyn Error>> {
                         //let num: u128 = arg_str.parse::<u128>()?;
                         let num: u128 = arg1.parse::<u128>()?;
                         let set_bits = count_set_bits(num.try_into().unwrap());
-                        if cfg!(debug_assertions) {
-                            println!(" {}", set_bits);
-                        } else {
-                            println!("{}", set_bits);
-                        }
+                        //if cfg!(debug_assertions) {
+                        //println!(" {}", set_bits);
+                        //} else {
+                        println!(" {}", set_bits);
+                        //}
                     }
                 }
             };
@@ -104,6 +103,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         // one command and one argument passed
         3 => {
             let cmd = &args[1];
+            //TODO more command handling
             let num = &args[2];
             // parse the number
             let number: u128 = match num.parse() {
