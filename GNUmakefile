@@ -3,7 +3,7 @@
 	@echo
 all: install## 	 all
 ## make install && cargo t
-	cargo t -- --nocapture
+	cargo test --verbose -- --nocapture
 install: release## 	install
 ## cargo install --path .
 	cargo install --path .
