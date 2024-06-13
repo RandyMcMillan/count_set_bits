@@ -24,28 +24,35 @@ fn version() {
 
     let version = env!("CARGO_PKG_VERSION");
     let crate_name = env!("CARGO_CRATE_NAME");
-    //let name = env!("CARGO_PKG_NAME");
-    //let author = env!("CARGO_PKG_AUTHORS");
-
-    //println!("Program Name: {}", name);
-    //println!("Program Version: {}", version);
     println!("{} v{}", crate_name.replace("_", "-"), version);
-    //println!("Program Version: {}", version);
-    //println!("Program Author: {}", author);
 
     process::exit(0);
 }
 fn main() -> Result<(), Box<dyn Error>> {
     let args: Vec<String> = std::env::args().collect();
-    if args.len() < 2 {
-        println!("Error: Please provide a number as an argument.");
-    }
-
     if args.len() > 1 {
         let arg_str = &args[1];
         let num: u128 = arg_str.parse::<u128>()?;
         let set_bits = count_set_bits(num.try_into().unwrap());
-        println!(" {}", set_bits);
+        if cfg!(debug_assertions) {
+            println!(" {}", set_bits);
+        } else {
+            println!("{}", set_bits);
+        }
+    } else {
+        /*drop into stdin*/
+
+        let mut arg_str = String::new();
+        let stdin = std::io::stdin();
+        stdin.read_line(&mut arg_str).unwrap();
+        arg_str = arg_str.trim().to_string();
+        let num = arg_str.parse::<u128>().unwrap();
+        let set_bits = count_set_bits(num.try_into().unwrap());
+        if cfg!(debug_assertions) {
+            println!(" {}", set_bits);
+        } else {
+            println!("{}", set_bits);
+        }
     }
     Ok(())
 }
