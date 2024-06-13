@@ -44,45 +44,44 @@ fn main() -> Result<(), Box<dyn Error>> {
             let stdin = std::io::stdin();
             stdin.read_line(&mut arg_str).unwrap();
             arg_str = arg_str.trim().to_string();
-            print!("arg_str={}\n", arg_str);
+            //print!("arg_str={}\n", arg_str);
 
             //let s = "Gerald,70,a,b,c";
             let s = arg_str.clone();
-            print!("s={}\n", s);
+            //print!("s={}\n", s);
 
-            if let [arg1, arg2, arg3 @ ..] =
+            if let [arg1, _arg2, _arg3 @ ..] =
                 &s.split(" ").map(String::from).collect::<Vec<String>>()[..]
             {
-                print!("{} ", arg1);
-                print!("{} ", arg2);
-                print!("{:?} ", arg3);
-            //};
-            //std::process::exit(0);
+                //print!("{} ", arg1);
+                //print!("{} ", _arg2);
+                //print!("{:?} ", _arg3);
+                //};
+                //std::process::exit(0);
 
-            //match &arg_str[..] {
-            match &arg1[..] {
-                "version" => version(),
-                "-V" => version(),
-                "-v" => version(),
-                "--version" => version(),
-                "help" => help(),
-                "-h" => help(),
-                "--help" => help(),
-                //"increase" => increase(number),
-                //"decrease" => decrease(number),
-                _ => {
-                    //let num: u128 = arg_str.parse::<u128>()?;
-                    let num: u128 = arg1.parse::<u128>()?;
-                    let set_bits = count_set_bits(num.try_into().unwrap());
-                    if cfg!(debug_assertions) {
-                        println!(" {}", set_bits);
-                    } else {
-                        println!("{}", set_bits);
+                //match &arg_str[..] {
+                match &arg1[..] {
+                    "version" => version(),
+                    "-V" => version(),
+                    "-v" => version(),
+                    "--version" => version(),
+                    "help" => help(),
+                    "-h" => help(),
+                    "--help" => help(),
+                    //"increase" => increase(number),
+                    //"decrease" => decrease(number),
+                    _ => {
+                        //let num: u128 = arg_str.parse::<u128>()?;
+                        let num: u128 = arg1.parse::<u128>()?;
+                        let set_bits = count_set_bits(num.try_into().unwrap());
+                        if cfg!(debug_assertions) {
+                            println!(" {}", set_bits);
+                        } else {
+                            println!("{}", set_bits);
+                        }
                     }
                 }
-            }
             };
-
         }
         // one argument passed
         2 => {
