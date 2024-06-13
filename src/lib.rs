@@ -56,13 +56,13 @@ mod tests {
     #[test]
     fn cs_bits_64() {
         let result: u128 = count_set_bits(111111111111111111111111111111111111111, true);
-        print!("\nresult={}\n",result);
+        print!("\nresult={}\n", result);
         assert_eq!(result, 64);
     }
     #[test]
     fn cs_bits_128() {
         let result: u128 = count_set_bits(340282366920938463463374607431768211455, true);
-        print!("\nresult={}\n",result);
+        print!("\nresult={}\n", result);
         assert_eq!(result, 128);
     }
 }
