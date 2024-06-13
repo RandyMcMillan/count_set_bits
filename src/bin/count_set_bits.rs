@@ -44,22 +44,14 @@ fn main() -> Result<(), Box<dyn Error>> {
             let stdin = std::io::stdin();
             stdin.read_line(&mut arg_str).unwrap();
             arg_str = arg_str.trim().to_string();
-            //print!("arg_str={}\n", arg_str);
-
-            //let s = "Gerald,70,a,b,c";
             let s = arg_str.clone();
-            //print!("s={}\n", s);
-
-            if let [arg1, _arg2, _arg3 @ ..] =
+            if let [arg1, _arg2 @ ..] =
                 &s.split(" ").map(String::from).collect::<Vec<String>>()[..]
             {
-                //print!("{} ", arg1);
-                //print!("{} ", _arg2);
-                //print!("{:?} ", _arg3);
-                //};
-                //std::process::exit(0);
-
-                //match &arg_str[..] {
+                if cfg!(debug_assertions) {
+                print!("&arg1={}\n",&arg1);
+                print!("&_arg2={:?}\n",&_arg2);
+                }
                 match &arg1[..] {
                     "version" => version(),
                     "-V" => version(),
