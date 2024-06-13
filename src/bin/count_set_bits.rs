@@ -3,20 +3,17 @@ use std::env;
 use std::error::Error;
 
 fn version() {
-    print!("");
-
     let version = env!("CARGO_PKG_VERSION");
     let crate_name = env!("CARGO_CRATE_NAME");
     println!("{} v{}", crate_name.replace("_", "_"), version);
-
     std::process::exit(0);
 }
-fn increase(number: i32) {
+fn increase(number: u128) {
     println!("{}", number + 1);
     std::process::exit(0);
 }
 
-fn decrease(number: i32) {
+fn decrease(number: u128) {
     println!("{}", number - 1);
     std::process::exit(0);
 }
@@ -30,7 +27,8 @@ fn help() {
 {} <string>
     Check whether given string is the answer.
 {} {{increase|decrease}} <integer>
-    Increase or decrease given integer by one.",crate_name,crate_name
+    Increase or decrease given integer by one.",
+        crate_name, crate_name
     );
     std::process::exit(0);
 }
@@ -46,6 +44,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             let stdin = std::io::stdin();
             stdin.read_line(&mut arg_str).unwrap();
             arg_str = arg_str.trim().to_string();
+            print!("arg_str={}\n", arg_str);
 
             match &arg_str[..] {
                 "version" => version(),
@@ -55,6 +54,8 @@ fn main() -> Result<(), Box<dyn Error>> {
                 "help" => help(),
                 "-h" => help(),
                 "--help" => help(),
+                //"increase" => increase(number),
+                //"decrease" => decrease(number),
                 _ => {
                     let num: u128 = arg_str.parse::<u128>()?;
                     let set_bits = count_set_bits(num.try_into().unwrap());
@@ -65,6 +66,24 @@ fn main() -> Result<(), Box<dyn Error>> {
                     }
                 }
             }
+
+            let s = "Gerald,70,a,b,c";
+
+            if let [name, age_str, other @ ..] =
+                &s.split(",").map(String::from).collect::<Vec<String>>()[..]
+            {
+                // If there is no comma, this if statement won't run.
+
+                println!("{}", name);
+                println!("{}", age_str);
+                println!("{:?}", other);
+                /*
+                    Output:
+                    Gerald
+                    70
+                    ["a", "b", "c"]
+                */
+            };
         }
         // one argument passed
         2 => {
@@ -88,9 +107,6 @@ fn main() -> Result<(), Box<dyn Error>> {
                         } else {
                             println!("{}", set_bits);
                         }
-
-                        //eprintln!("error: invalid command");
-                        //help();
                     }
                 }
             }
@@ -100,7 +116,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             let cmd = &args[1];
             let num = &args[2];
             // parse the number
-            let number: i32 = match num.parse() {
+            let number: u128 = match num.parse() {
                 Ok(n) => n,
                 Err(_) => {
                     eprintln!("error: second argument not an integer");
