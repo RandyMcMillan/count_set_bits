@@ -13,5 +13,10 @@ build:## 	build
 release:## 	release
 ## cargo build --release
 	cargo build --release
+doc:## 	doc
+## cargo doc
+	cargo doc
 more:## 	more help
 	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/	/'
+
+.PHONY:doc
