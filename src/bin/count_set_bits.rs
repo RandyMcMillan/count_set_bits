@@ -1,14 +1,13 @@
 use count_set_bits::count_set_bits;
 use std::env;
 use std::error::Error;
-use std::num::ParseIntError;
 
 fn version() {
     print!("");
 
     let version = env!("CARGO_PKG_VERSION");
     let crate_name = env!("CARGO_CRATE_NAME");
-    println!("{} v{}", crate_name.replace("_", "-"), version);
+    println!("{} v{}", crate_name.replace("_", "_"), version);
 
     std::process::exit(0);
 }
@@ -25,21 +24,15 @@ fn decrease(number: i32) {
 fn help() {
     let crate_name = env!("CARGO_CRATE_NAME");
     let version = env!("CARGO_PKG_VERSION");
-    print!("\n{} v{}\n\n", crate_name.replace("_", "-"), version);
-    print!("{} get\n", crate_name.replace("_", "-"));
-    print!("       <csv_relay_list>\n");
-    print!("{} json\n", crate_name.replace("_", "-"));
-    print!("       <json_relay_list>\n");
-    print!("{} stripped\n", crate_name.replace("_", "-"));
-    print!("       <string_relay_list> <int_length_last>\n");
-    std::process::exit(0);
+    print!("{} v{}\n", crate_name.replace("_", "_"), version);
     println!(
         "usage:
-match_args <string>
+{} <string>
     Check whether given string is the answer.
-match_args {{increase|decrease}} <integer>
-    Increase or decrease given integer by one."
+{} {{increase|decrease}} <integer>
+    Increase or decrease given integer by one.",crate_name,crate_name
     );
+    std::process::exit(0);
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -54,30 +47,24 @@ fn main() -> Result<(), Box<dyn Error>> {
             stdin.read_line(&mut arg_str).unwrap();
             arg_str = arg_str.trim().to_string();
 
-
-                match &arg_str[..] {
-                    "version" => version(),
-                    "-V" => version(),
-                    "-v" => version(),
-                    "--version" => version(),
-                    "help" => help(),
-                    "-h" => help(),
-                    "--help" => help(),
-                    _ => {
-                        let num: u128 = arg_str.parse::<u128>()?;
-                        let set_bits = count_set_bits(num.try_into().unwrap());
-                        if cfg!(debug_assertions) {
-                            println!(" {}", set_bits);
-                        } else {
-                            println!("{}", set_bits);
-                        }
-
-
-
-
-
-        }
-        }
+            match &arg_str[..] {
+                "version" => version(),
+                "-V" => version(),
+                "-v" => version(),
+                "--version" => version(),
+                "help" => help(),
+                "-h" => help(),
+                "--help" => help(),
+                _ => {
+                    let num: u128 = arg_str.parse::<u128>()?;
+                    let set_bits = count_set_bits(num.try_into().unwrap());
+                    if cfg!(debug_assertions) {
+                        println!(" {}", set_bits);
+                    } else {
+                        println!("{}", set_bits);
+                    }
+                }
+            }
         }
         // one argument passed
         2 => {
