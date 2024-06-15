@@ -47,10 +47,6 @@ fn main() -> Result<(), Box<dyn Error>> {
             let s = arg_str.clone();
             if let [arg1, _arg2 @ ..] = &s.split(" ").map(String::from).collect::<Vec<String>>()[..]
             {
-                if cfg!(debug_assertions) {
-                    //print!("&arg1={}\n",&arg1);
-                    //print!("&_arg2={:?}\n",&_arg2);
-                }
                 match &arg1[..] {
                     "version" => version(),
                     "-V" => version(),
@@ -62,14 +58,9 @@ fn main() -> Result<(), Box<dyn Error>> {
                     //"increase" => increase(number),
                     //"decrease" => decrease(number),
                     _ => {
-                        //let num: u128 = arg_str.parse::<u128>()?;
                         let num: u128 = arg1.parse::<u128>()?;
                         let set_bits = count_set_bits(num.try_into().unwrap(), true);
-                        //if cfg!(debug_assertions) {
-                        //println!(" {}", set_bits);
-                        //} else {
-                        println!(" {}", set_bits);
-                        //}
+                        print!(" {}", set_bits);
                     }
                 }
             };
@@ -92,9 +83,9 @@ fn main() -> Result<(), Box<dyn Error>> {
                         let num: u128 = arg_str.parse::<u128>()?;
                         let set_bits = count_set_bits(num.try_into().unwrap(), true);
                         if cfg!(debug_assertions) {
-                            println!(" {}", set_bits);
+                            print!(" {}", set_bits);
                         } else {
-                            println!("{}", set_bits);
+                            print!(" {}", set_bits);
                         }
                     }
                 }
@@ -109,7 +100,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             let number: u128 = match num.parse() {
                 Ok(n) => n,
                 Err(_) => {
-                    eprintln!("error: second argument not an integer");
+                    eprint!("error: second argument not an integer");
                     help();
                     0
                     //Ok(())
@@ -128,7 +119,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 "increase" => increase(number),
                 "decrease" => decrease(number),
                 _ => {
-                    eprintln!("error: invalid command");
+                    eprint!("error: invalid command");
                     help();
                 }
             }
@@ -143,9 +134,9 @@ fn main() -> Result<(), Box<dyn Error>> {
                 let num: u128 = arg_str.parse::<u128>()?;
                 let set_bits = count_set_bits(num.try_into().unwrap(), true);
                 if cfg!(debug_assertions) {
-                    println!(" {}", set_bits);
+                    print!(" {}", set_bits);
                 } else {
-                    println!("{}", set_bits);
+                    print!(" {}", set_bits);
                 }
             } else {
                 /*drop into stdin*/
@@ -158,9 +149,9 @@ fn main() -> Result<(), Box<dyn Error>> {
                 let num = arg_str.parse::<u128>().unwrap();
                 let set_bits = count_set_bits(num.try_into().unwrap(), true);
                 if cfg!(debug_assertions) {
-                    println!(" {}", set_bits);
+                    print!(" {}", set_bits);
                 } else {
-                    println!("{}", set_bits);
+                    print!(" {}", set_bits);
                 }
             }
         }
