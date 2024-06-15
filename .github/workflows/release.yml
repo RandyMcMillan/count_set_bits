@@ -63,6 +63,9 @@ jobs:
         # failing. otherwise `sh` won't catch that `curl` returned non-0
         shell: bash
         run: "curl --proto '=https' --tlsv1.2 -LsSf https://github.com/axodotdev/cargo-dist/releases/download/v0.14.1/cargo-dist-installer.sh | sh"
+      - name: rustup install aarch64-apple-darwin
+        shell: bash
+        run: rustup install aarch64-apple-darwin
       # sure would be cool if github gave us proper conditionals...
       # so here's a doubly-nested ternary-via-truthiness to try to provide the best possible
       # functionality based on whether this is a pull_request, and whether it's from a fork.
