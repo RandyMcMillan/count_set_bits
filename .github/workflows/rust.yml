@@ -21,7 +21,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build
+    - name: cargo install count_set_bits
+      run: cargo install count_set_bits
+    - name: cargo build --verbose
       run: cargo build --verbose
-    - name: Run tests
+    - name: cargo test --verbose -- --nocapture
       run: cargo test --verbose -- --nocapture
+
