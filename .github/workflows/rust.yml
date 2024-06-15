@@ -2,9 +2,14 @@ name: Rust
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    tags:
+      - '**[0-9]+.[0-9]+.[0-9]+*'
+    branches:
+      - '*'
+      - '*/*'
+      - '**'
+      - 'master'
+      - 'main'
 
 env:
   CARGO_TERM_COLOR: always
@@ -16,7 +21,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build
+    - name: cargo install count_set_bits
+      run: cargo install count_set_bits
+    - name: cargo install --path .
+      run: cargo install --path .
+    - name: cargo build --verbose
       run: cargo build --verbose
-    - name: Run tests
+    - name: cargo test --verbose -- --nocapture
       run: cargo test --verbose -- --nocapture
+
