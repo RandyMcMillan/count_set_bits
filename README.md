@@ -1,4 +1,4 @@
-# count\_set\_bits [![Release](https://github.com/RandyMcMillan/count_set_bits/actions/workflows/release.yml/badge.svg)](https://github.com/RandyMcMillan/count_set_bits/actions/workflows/release.yml)
+# count\_set\_bits [![Release](https://github.com/RandyMcMillan/count_set_bits/actions/workflows/release.yml/badge.svg)](https://github.com/RandyMcMillan/count_set_bits/actions/workflows/release.yml) [![Rust](https://github.com/RandyMcMillan/count_set_bits/actions/workflows/rust.yml/badge.svg)](https://github.com/RandyMcMillan/count_set_bits/actions/workflows/rust.yml)
 
 ```
 cargo add count_set_bits
