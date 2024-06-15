@@ -23,6 +23,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: cargo install count_set_bits
       run: cargo install count_set_bits
+    - name: cargo install --path .
+      run: cargo install --path .
     - name: cargo build --verbose
       run: cargo build --verbose
     - name: cargo test --verbose -- --nocapture
